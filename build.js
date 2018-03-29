@@ -1,7 +1,10 @@
 /* eslint no-var: 0 */
 var exec = require('child_process').exec
 
-var cmdLine = './node_modules/.bin/webpack --progress'
+var path = require('path')
+
+var webpackPath = path.join(__dirname, '/node_modules/.bin/webpack')
+var cmdLine = webpackPath + ' --progress'
 var environ = (!process.argv[2].indexOf('development')) ? 'development' : 'production'
 var command
 
