@@ -109,18 +109,21 @@ export default class Items extends Component {
 
     const groupOrders = getGroupOrders(this.props.groups, this.props.keys)
 
-    this.props.selectedItems.forEach((selectedItemId) => {
-      const item = this.props.items.find(itemObj => _get(itemObj, itemIdKey) === selectedItemId)
-      let order = groupOrders[_get(item, itemGroupKey)]
-
-      console.log('items itemDrop')
-      this.props.itemDrop(
-        selectedItemId,
-        _get(item, itemTimeStartKey) + dragTimeDelta,
+    let itemChanges = this.props.selectedItems.map(selectedItemId => {
+      const item = this.props.items.find(itemObj => _get(itemObj, itemIdKey) === selectedItemId);
+      let order = groupOrders[_get(item, itemGroupKey)];
+      
+      return {
+        itemId: selectedItemId,
+        dragTime: _get(item, itemTimeStartKey) + dragTimeDelta,
         order,
         dragGroupDelta
-      )
-    })
+      };
+    });
+
+    this.props.itemDrop(
+      itemChanges
+    );
 
     this.setState({
       isDraggingItem: false,

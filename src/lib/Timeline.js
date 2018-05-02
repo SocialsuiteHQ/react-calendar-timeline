@@ -948,21 +948,21 @@ export default class ReactCalendarTimeline extends Component {
     })
   }
 
-  itemDrop = (itemId, dragTime, oldGroupOrder, dragGroupDelta) => {
-    let indexNewGroup = oldGroupOrder + dragGroupDelta
-    if (indexNewGroup > this.props.groups.length - 1) {
-      indexNewGroup = this.props.groups.length - 1
-    }
-    if (indexNewGroup < 0) {
-      indexNewGroup = 0
-    }
+  itemDrop = (items) => {
     this.setState({
       isDraggingItem: false,
       dragTimeDelta: 0,
       infoLabel: null
     })
+
     if (this.props.onItemMove) {
-      this.props.onItemMove(itemId, dragTime, indexNewGroup)
+      let newItems = items.map(item => ({
+        id: item.itemId,
+        group: Math.max(Math.min(item.order + item.dragGroupDelta, this.props.groups.length - 1), 0),
+        dragTime: item.dragTime 
+      }));
+
+      this.props.onItemMove(newItems);
     }
   }
 
