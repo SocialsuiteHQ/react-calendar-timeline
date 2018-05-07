@@ -58,7 +58,7 @@ export default class Items extends Component {
              arraysEqual(nextProps.items, this.props.items) &&
              nextProps.keys === this.props.keys &&
              nextProps.canvasTimeStart === this.props.canvasTimeStart &&
-             nextProps.canvasTimeEnd === this.props.canvasTimeEnd &&
+            //  nextProps.canvasTimeEnd === this.props.canvasTimeEnd && // Removed as not actually needed and causes issues with drag scroll updates
              nextProps.canvasWidth === this.props.canvasWidth &&
              arraysEqual(nextProps.selectedItems, this.props.selectedItems) &&
              nextProps.dragSnap === this.props.dragSnap &&

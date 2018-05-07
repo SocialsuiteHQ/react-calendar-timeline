@@ -661,8 +661,12 @@ export default class ReactCalendarTimeline extends Component {
       const newScrollLeft = Math.round(
         this.state.width * (visibleTimeStart - oldCanvasTimeStart) / newZoom
       )
-      if (this.scrollComponent.scrollLeft !== newScrollLeft) {
-        resetCanvas = true
+
+      // SS: If tiny change in scroll then just reassign
+      if(Math.abs((newZoom - oldZoom) / newZoom) < 0.001) {
+        this.scrollComponent.scrollLeft = newScrollLeft;
+      } else {
+        resetCanvas = true;
       }
     } else {
       resetCanvas = true
