@@ -42,7 +42,8 @@ export default class Item extends Component {
     groupTops: PropTypes.array,
     useResizeHandle: PropTypes.bool,
     moveResizeValidator: PropTypes.func,
-    onItemDoubleClick: PropTypes.func
+    onItemDoubleClick: PropTypes.func,
+    onMouseUp: PropTypes.func
   }
 
   static defaultProps = {
@@ -474,6 +475,7 @@ export default class Item extends Component {
   }
 
   actualClick(e, clickType) {
+    this.props.onMouseUp(e);
     if (this.props.canSelect && this.props.onSelect) {
       this.props.onSelect(this.itemId, clickType, e)
     }

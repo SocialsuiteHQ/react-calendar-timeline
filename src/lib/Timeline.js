@@ -104,6 +104,7 @@ export default class ReactCalendarTimeline extends Component {
 
     canChangeGroup: PropTypes.bool,
     canMove: PropTypes.bool,
+    canControlZoom: PropTypes.bool,
     canResize: PropTypes.oneOf([true, false, 'left', 'right', 'both']),
     useResizeHandle: PropTypes.bool,
     canSelect: PropTypes.bool,
@@ -230,6 +231,7 @@ export default class ReactCalendarTimeline extends Component {
 
     canChangeGroup: true,
     canMove: true,
+    canControlZoom: true,
     canResize: 'right',
     useResizeHandle: false,
     canSelect: true,
@@ -724,7 +726,11 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   onWheel = e => {
-    const { traditionalZoom } = this.props
+    const { traditionalZoom, canControlZoom } = this.props
+
+    if(!canControlZoom) {
+      return;
+    }
 
     e.preventDefault()
 
@@ -1207,6 +1213,7 @@ export default class ReactCalendarTimeline extends Component {
              itemDragStart={this.itemDragStart}
              itemDrag={this.itemDrag}
              itemDrop={this.itemDrop}
+             onMouseUp={this.handleMouseUp}
              onItemDoubleClick={this.props.onItemDoubleClick}
              onItemContextMenu={this.props.onItemContextMenu}
              itemResizing={this.resizingItem}

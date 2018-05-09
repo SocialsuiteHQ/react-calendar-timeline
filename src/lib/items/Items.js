@@ -49,6 +49,7 @@ export default class Items extends Component {
 
     onItemDoubleClick: PropTypes.func,
     onItemContextMenu: PropTypes.func,
+    onMouseUp: PropTypes.func,
 
     itemRenderer: PropTypes.func
   }
@@ -180,6 +181,7 @@ export default class Items extends Component {
                            onItemDoubleClick={this.props.onItemDoubleClick}
                            onContextMenu={this.props.onItemContextMenu}
                            onSelect={this.props.itemSelect}
+                           onMouseUp={this.props.onMouseUp}
                            itemRenderer={this.props.itemRenderer} />
             })
         }
