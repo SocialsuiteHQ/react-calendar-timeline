@@ -959,10 +959,14 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   itemDrop = (items) => {
+      // isDragging, dragStartPosition, and dragLastPosition needed by salesforce because otherwise it thinks you've also selected the canvas
     this.setState({
       isDraggingItem: false,
       dragTimeDelta: 0,
-      infoLabel: null
+      infoLabel: null,
+      isDragging: false,
+      dragStartPosition: null,
+      dragLastPosition: null
     })
 
     if (this.props.onItemMove) {
