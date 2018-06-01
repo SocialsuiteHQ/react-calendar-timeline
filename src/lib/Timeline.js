@@ -556,6 +556,7 @@ export default class ReactCalendarTimeline extends Component {
     //Fix for scroll firing when visible Time is initially passed into render method
     if(!this.state.isLoaded) {
       this.setState({ isLoaded: true });
+      this.updateScrollCanvas(this.props.visibleTimeStart, this.props.visibleTimeEnd, false, this.props.items, this.props.groups);
       return;
     }
 
