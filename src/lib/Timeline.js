@@ -368,7 +368,10 @@ export default class ReactCalendarTimeline extends Component {
       topOffset: 0,
       resizingItem: null,
       resizingEdge: null,
-      isDraggingItem: false
+      isDraggingItem: false,
+
+      // Fix for onScroll firing with visiableTime set
+      isLoaded: !(this.props.visibleTimeStart && this.props.visibleTimeEnd),
     }
 
     const { dimensionItems, height, groupHeights, groupTops } = this.stackItems(
@@ -550,6 +553,12 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   onScroll = () => {
+    //Fix for scroll firing when visible Time is initially passed into render method
+    if(!this.state.isLoaded) {
+      this.setState({ isLoaded: true });
+      return;
+    }
+
     const scrollComponent = this.scrollComponent
     const canvasTimeStart = this.state.canvasTimeStart
     const scrollX = scrollComponent.scrollLeft
