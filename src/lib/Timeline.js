@@ -1095,8 +1095,8 @@ export default class ReactCalendarTimeline extends Component {
     let timePosition = visibleTimeStart + ratio * (pageX - boundingRect.left)
 
     if (this.props.dragSnap) {
-      timePosition =
-        Math.round(timePosition / this.props.dragSnap) * this.props.dragSnap
+      // Cursor line just displays time
+      // timePosition = Math.round(timePosition / this.props.dragSnap) * this.props.dragSnap
     }
 
     if (this.props.onCanvasMouseMove) {

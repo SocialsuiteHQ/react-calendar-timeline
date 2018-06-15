@@ -155,7 +155,7 @@ export default class Item extends Component {
     if (this.props.moveResizeValidator) {
       dragTimeDelta = this.props.moveResizeValidator('move', item, this.itemTimeStart + dragTimeDelta) - this.itemTimeStart
     } else {
-      dragTimeDelta = (Math.round((this.itemTimeStart + dragTimeDelta) / dragSnap) * dragSnap) - this.itemTimeStart
+      dragTimeDelta = (Math.round((this.itemTimeStart + dragTimeDelta) / dragSnap) * dragSnap) - this.itemTimeStart - 36000000 //For some reason timezones aren't handled correctly
     }
 
     if (onDrag) {
